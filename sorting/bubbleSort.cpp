@@ -30,7 +30,7 @@ void bubbleSort(vi &a) {
 }
 
 int main(){
-		vi a = {10,1,7,6,14,9};
+	vi a = {10,1,7,6,14,9};
 	bubbleSort(a);
 	for(auto i: a) {
 		cout << i << " ";
