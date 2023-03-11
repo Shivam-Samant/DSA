@@ -42,11 +42,7 @@ int main()
   return 0;
 }
 
-
-// Pattern Printing
-// Beautiful Arrays
-// Strange Matrix
-// Stable Array 
-// Awesome Pairs
+// ouput 
+// * ** *** **** ***** 
 
 
