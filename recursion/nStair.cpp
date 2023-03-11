@@ -18,14 +18,13 @@ using namespace std;
 #define mii map<int, int>
 #define endl '\n'
 
-int numOfWays(int stair){
-	if(stair == 0) return 1;
-	if(stair < 0) return 0;
-	return numOfWays(stair-1) + numOfWays(stair-2);
+int numOfWays(int stairs){
+  if(stairs == 0 || stairs == 1) return 1;
+  return numOfWays(stairs-1) + numOfWays(stairs-2);
 }
 
 int main(){
-	int stair = 5;
-	cout << numOfWays(stair);
-	return 0;
+  int stairs = 5;
+  cout << numOfWays(stairs);
+  return 0;
 }
