@@ -43,7 +43,13 @@ int main(){
   char *cptr2 = &cr;
   cout << "cptr2: " << cptr2 << endl; // print null values also until not get the null character
   cout << "*cptr2: " << *cptr2 << endl;
-  cout << "&cptr2: " << &cptr2 << endl;
+  cout << "&cptr2: " << &cptr2 << endl << endl;
+
+  // bad practice
+  char *bptr = "Bad practice";
+  cout << "bptr: " << bptr << endl;
+  cout << "*bptr: " << *bptr << endl;
+  cout << "&bptr: " << &bptr << endl << endl;
 
   return 0;
 }
