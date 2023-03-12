@@ -34,6 +34,7 @@ int main(){
   cout << "&Arr[0]: " << &arr[0] << endl << endl;
   cout << "Arr[0]: " << arr[0] << endl;
   cout << "*Arr: " << *arr << endl;
+  cout << "Arr+2: " << arr+2 << endl;
   cout << "*(Arr)+1: " << *(arr)+1 << endl;
   cout << "*(Arr+1): " << *(arr+1) << endl << endl;
 
