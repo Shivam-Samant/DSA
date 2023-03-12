@@ -36,7 +36,14 @@ int main(){
   cout << "&cptr: " << &cptr << endl;
   cout << "*cptr: " << *cptr << endl;
   cout << "*(cptr + 3): " << *(cptr + 3) << endl;
-  cout << "cptr+2: " << cptr+2 << endl;
+  cout << "cptr+2: " << cptr+2 << endl << endl;
+
+  // imp
+  char cr = 's';
+  char *cptr2 = &cr;
+  cout << "cptr2: " << cptr2 << endl; // print null values also until not get the null character
+  cout << "*cptr2: " << *cptr2 << endl;
+  cout << "&cptr2: " << &cptr2 << endl;
 
   return 0;
 }
