@@ -22,6 +22,14 @@ void solve(int *a) {
   *a = 50;
 }
 
+void solve2(int *p) {
+  p = p + 1;
+}
+
+void solve3(int *& p) {
+  p = p + 1;
+}
+
 int main(){
   int a = 5;
 
@@ -45,6 +53,28 @@ int main(){
 
   cout << "a: " << a << endl;
   cout << "b: " << b << endl;
+
+  int *p = &a;
+  cout << "Address of a " << &a << endl;
+  cout << "Value of p " << p << endl;
+  cout << "Value of p " << &p << endl << endl;
+
+  cout << "Before solve2 function value of p " << p << endl;
+  cout << "Before solve2 function value of *p " << *p << endl;
+  cout << "Before solve2 function value of  a " << a << endl;
+  solve2(p);
+  cout << "After solve2 function value of p " << p << endl;
+  cout << "After solve2 function value of *p " << *p << endl;
+  cout << "After solve2 function value of  a " << a << endl;
+
+  cout << endl;
+  cout << "Before solve3 function value of p " << p << endl;
+  cout << "Before solve3 function value of *p " << *p << endl;
+  cout << "Before solve3 function value of  a " << a << endl;
+  solve3(p);
+  cout << "After solve3 function value of p " << p << endl;
+  cout << "After solve3 function value of *p " << *p << endl;
+  cout << "After solve3 function value of  a " << a << endl;
 
   return 0;
 }
