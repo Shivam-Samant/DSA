@@ -41,7 +41,10 @@ int main(){
   cout << "&p: " << &p << endl;
   cout << "*p: " << *p << endl << endl;
   cout << "*(p)+1: " << *(p)+1 << endl;
-  cout << "*(p+1): " << *(p+1) << endl;
+  cout << "*(p+1): " << *(p+1) << endl << endl;
+
+	cout << "sizeof(p): " << sizeof(p) << endl;
+	cout << "sizeof(*p): " << sizeof(*p) << endl;
 
   return 0;
 }
