@@ -21,10 +21,21 @@ using namespace std;
 int main(){
   int a = 5;
 
-  // reference variable -> same memory but different variable
+  // reference variable -> same memory location but different variable (name)
   int &b = a;
 
   cout << "a: " << a << endl;
   cout << "b: " << b << endl;
+
+  a++;
+
+  cout << "a: " << a << endl;
+  cout << "b: " << b << endl;
+
+  b++;
+
+  cout << "a: " << a << endl;
+  cout << "b: " << b << endl;
+
   return 0;
 }
