@@ -20,18 +20,9 @@ using namespace std;
 
 int binarySearch(int *arr, int s, int size, int key) {
   int mid = (s + size) / 2;
-  if (s > size) {
-    return -1;
-  }
-  if (arr[mid] == key) {
-    return mid;
-  }
-  if (arr[mid] < key) {
-    return binarySearch(arr, mid+1, size, key);
-  } else {
-    return binarySearch(arr, s, mid-1, key);
-  }
-
+  if (s > size) return -1;
+  if (arr[mid] == key) return mid;
+  return arr[mid] < key ? binarySearch(arr, mid+1, size, key) : binarySearch(arr, s, mid-1, key);
 }
 
 int main(){
