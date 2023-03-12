@@ -18,6 +18,10 @@ using namespace std;
 #define mii map<int, int>
 #define endl '\n'
 
+void solve(int *a) {
+  *a = 50;
+}
+
 int main(){
   int a = 5;
 
@@ -33,6 +37,11 @@ int main(){
   cout << "b: " << b << endl;
 
   b++;
+
+  cout << "a: " << a << endl;
+  cout << "b: " << b << endl;
+
+  solve(&a);
 
   cout << "a: " << a << endl;
   cout << "b: " << b << endl;
