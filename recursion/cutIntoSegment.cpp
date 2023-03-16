@@ -6,15 +6,14 @@ int maxWays(vector<int> &nums, int segmentLength) {
   if (segmentLength == 0) {
     return 0;
   }
-  if (segmentLength < 0) {
-    return INT_MIN;
-  }
 
   int maxi = INT_MIN;
   for(int i = 0; i < nums.size(); i++) {
-    int ans = maxWays(nums, segmentLength-nums[i]);
-    if (ans != INT_MIN) {
-      maxi = max(maxi, ans+1);
+    if (segmentLength-nums[i] >= 0) {
+      int ans = maxWays(nums, segmentLength-nums[i]);
+      if (ans != INT_MIN) {
+        maxi = max(maxi, ans+1);
+      }
     }
   }
 
