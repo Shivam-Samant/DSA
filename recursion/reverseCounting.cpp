@@ -25,7 +25,7 @@ void printReverse(int N){
 }
 
 int main(){
-		int N = 5;
-		printReverse(N);
+	int N = 5;
+	printReverse(N);
 	return 0;
 }
