@@ -3,7 +3,7 @@
 using namespace std;
 
 bool isSameString(string &s, string &goal) {
-    return s.length() == goal.length() && (s+s).find(goal) != std::string::npos;
+    return s.length() == goal.length() && (s+s).find(goal) != string::npos;
 }
 
 int main() {
