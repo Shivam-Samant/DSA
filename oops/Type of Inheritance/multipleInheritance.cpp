@@ -23,6 +23,9 @@ class C : public A, public B {
     int mathMarks;
 };
 
+// if A and B are the same methods or data members then there is an ambiguity in the code and we need to use scope resolution operator to resolve the ambiguity
+// NOTE: this problem known as Diamond problem
+
 int main() {
     C c;
     c.mathMarks = 100;
