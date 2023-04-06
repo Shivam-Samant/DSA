@@ -8,6 +8,10 @@
 #include <queue>
 using namespace std;
 
+// Inheritance is a mechanism of inheriting the properties of one class to another class
+// so that inheritance is a mechanism of reusing the code of existing class to create a new class
+// that is why inheritance is also called as code reusability mechanism in oops programming language
+
 class Base {
     int x, y;
     public:
