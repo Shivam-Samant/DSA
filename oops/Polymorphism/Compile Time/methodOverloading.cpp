@@ -10,6 +10,7 @@ using namespace std;
 
 // Polymorphism is the ability of an object to take on many forms.
 
+// Function overloading -> same function name but different parameters
 class Adder {
     public:
     int sum(int x, int y) {
