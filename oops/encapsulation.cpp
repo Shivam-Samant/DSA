@@ -8,8 +8,9 @@
 #include <queue>
 using namespace std;
 
-// Encapsulation is a mechanism of wrapping data and methods together
+// Encapsulation is a mechanism of wrapping data and methods together || data hiding
 // NOTE: when all data members are private then we call it as perfect encapsulation
+// NOTE: Encapsulation is a subset of the Abstractions
 
 class Encapsulation {
     // default members and methods are private
