@@ -30,10 +30,38 @@ void insertAtHead(Node* &head, int data) {
     head = newNode;
 }
 
-void insertAtIndex(Node* &head, int index, int data) {
+void insertAtTail(Node* tail, int data) {
+    Node* newNode = new Node(data);
+    if (tail == NULL) {
+        tail = newNode;
+    } else {
+        tail->next = newNode;
+        tail = newNode;
+    }
+}
+
+int findLength(Node* &head) {
+    Node *temp = head;
+    int count = 1;
+    while(temp->next != NULL) {
+        temp = temp->next;
+        count++;
+    }
+    return count;
+}
+
+void insertAtPosition(Node* &head, Node *tail, int index, int data) {
+    if (index == 0) {
+        insertAtHead(head, data);
+        return;
+    }
+    if (index == findLength(head)) {
+        insertAtTail(tail, data);
+        return;
+    }
     int i = 1;
     Node* temp = head;
-    while (i != index) {
+    while (i < index) {
         temp = temp->next;
         i++;
     }
@@ -52,6 +80,7 @@ void print(Node *ptr) {
 
 int main() {
     Node *head = new Node(10);
+    Node *tail = head;
     insertAtHead(head, 20);
     insertAtHead(head, 30);
     insertAtHead(head, 40);
@@ -59,7 +88,13 @@ int main() {
     insertAtHead(head, 60);
 
     print(head);
-    insertAtIndex(head, 3, 100);
+    insertAtPosition(head, tail, 3, 100);
+    print(head);
+    insertAtPosition(head, tail, 1, 200);
+    print(head);
+    insertAtPosition(head, tail, 0, 500);
+    print(head);
+    insertAtPosition(head, tail, 9, 900);
     print(head);
 
     return 0;
