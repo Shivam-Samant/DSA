@@ -86,6 +86,70 @@ void insertAtPosition(Node *&head, Node *&tail, int position, int data) {
     temp->prev = newNode;
 }
 
+void deleteAtHead(Node *&head, Node *&tail) {
+    if (head==NULL) {
+        return;
+    }
+
+    if (head == tail) {
+        Node *temp = head;
+        head = NULL;
+        tail = NULL;
+        delete temp;
+        return;
+    }
+
+    Node *temp = head;
+    Node *nextNode = temp->next;
+    nextNode->prev = NULL;
+    head = nextNode;
+    delete temp;
+}
+
+void deleteAtTail(Node *&head, Node *&tail) {
+    if (head==NULL) {
+        return;
+    }
+
+    if (head == tail) {
+        Node *temp = head;
+        head = NULL;
+        tail = NULL;
+        delete temp;
+        return;
+    }
+
+    Node *temp = tail;
+    tail = tail->prev;
+    tail->prev = NULL;
+    temp->prev = NULL;
+    delete temp;
+}
+
+void deleteAtPosition(Node *&head, Node *&tail, int position) {
+    cout << "head: " << head->data << "  tail: " << tail->data << " position: " << position << endl;
+    if (head == NULL) {
+        return;
+    }
+    if (head == tail) {
+        Node *temp = head;
+        head = NULL;
+        tail = NULL;
+        delete temp;
+        return;
+    }
+    cout << "head: " << head->data << endl;
+    Node *temp = head;
+    for (int i = 1; i < position; i++) {
+        temp = temp->next;
+    }
+
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+    cout << temp->data << " " << head->data << endl;
+    delete temp;
+}
+
 int main() {
     Node *node1 = new Node(10);
     Node *node2 = new Node(20);
@@ -105,10 +169,18 @@ int main() {
     print(head);
     insertAtTail(head, tail, 50);
     print(head);
+    insertAtPosition(head, tail, 2, 100);
+    print(head);
+
     cout << "Reverse order: " << endl;
     reversePrint(tail);
 
-    insertAtPosition(head, tail, 2, 100);
-    print(head);
+    deleteAtHead(head, tail);
+    // print(head);
+    // deleteAtTail(head, tail);
+    // print(head);
+    // deleteAtPosition(head, tail, 2);
+    // print(head);
+
     return 0;
 }
