@@ -1,10 +1,11 @@
 #include <iostream>
 #include<vector>
+#include<unordered_map>
 #include<set>
 #include<algorithm>
 using namespace std;
 
-void solve(vector<int> &arr, int k, set<pair<int, int>> &ans) {
+void solveUsingBS(vector<int> &arr, int k, set<pair<int, int>> &ans) {
   sort(arr.begin(), arr.end());
 
     for(int i = 0; i < arr.size(); i++) {
@@ -14,11 +15,25 @@ void solve(vector<int> &arr, int k, set<pair<int, int>> &ans) {
     }
 }
 
+void solveUsingMap(vector<int> &arr, int k, set<pair<int, int> > &ans) {
+    unordered_map<int, bool> mp;
+    for(int i = 0; i < arr.size(); i++) {
+        mp[arr[i]] = true;
+    }
+
+    for(int i = 0; i < arr.size(); i++) {
+        if (mp[arr[i]+k]) {
+            ans.insert({arr[i], arr[i]+k});
+        }
+    }
+}
+
 int main() {
-  vector<int> arr{1,1,1,1,1};
-  int k = 0;
+  vector<int> arr{1,2,1,1,3};
+  int k = 1;
   set<pair<int,int>> ans;
-  solve(arr, k, ans);
+//   solveUsingBS(arr, k, ans);
+  solveUsingMap(arr, k, ans);
 
   for(auto i: ans) {
     cout << i.first << " " << i.second << endl;
