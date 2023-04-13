@@ -9,7 +9,7 @@ void solve(vector<int> &arr, int k, set<pair<int, int>> &ans) {
 
   int i = 0, j = 1;
   while(i < arr.size() && j < arr.size()) {
-    int diff = abs(arr[i] - arr[j]);
+    int diff = arr[j] - arr[i];
     if (diff == k) {
       ans.insert(make_pair(arr[i], arr[j]));
       i++; j++;
@@ -23,8 +23,8 @@ void solve(vector<int> &arr, int k, set<pair<int, int>> &ans) {
 }
 
 int main() {
-  vector<int> arr{1,1,1,1,1};
-  int k = 0;
+  vector<int> arr{1,2,1,1,1};
+  int k = 1;
   set<pair<int,int>> ans;
   solve(arr, k, ans);
 
