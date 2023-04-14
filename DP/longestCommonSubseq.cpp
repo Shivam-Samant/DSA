@@ -45,6 +45,26 @@ int solveTab(string &s, string &r) {
     return dp[0][0];
 }
 
+// OPTIMIZED BOTTOM UP DP
+
+int solveTab2(string &s, string &r) {
+    vector<int> curr(r.length()+1, 0);
+    vector<int> next(r.length()+1, 0);
+
+    for (int i = s.length() - 1; i >= 0; i--) {
+        for (int j = r.length() - 1; j >= 0; j--) {
+            if (s[i] == r[j]) {
+                curr[j] = 1 + next[j+1];
+            } else {
+                curr[j] = max(next[j], curr[j+1]);
+            }
+        }
+        next = curr;
+    }
+    return next[0];
+}
+
+
 int main() {
     string s = "abcdejsa;lfjas;kjf[ [pwje[rwjfodsjklfjalsjdflajiofjaf]]]";
     string r = "abcsjdlfjalskfp jawf joaiejfasdjflkjalfjeoihaind";
@@ -53,5 +73,7 @@ int main() {
     cout << longestCommonSubsequence(s, r, 0, 0, dp) << endl;
     cout << "BOTTOM UP DP ANS: ";
     cout << solveTab(s, r) << endl;
+    cout << "OPTIMIZED BOTTOM UP DP ANS: ";
+    cout << solveTab2(s, r) << endl;
     return 0;
 }
