@@ -28,22 +28,25 @@ void print(Node *ptr) {
 }
 
 void removeDuplicates(Node *&head) {
-    Node *prev = head;
-    Node *curr = head;
-
-    if (curr->next == NULL) {
+    if (head == NULL) {
+        cout << "LL is empty" << endl;
         return;
     }
-    curr = curr->next;
 
-    while (curr != NULL) {
-        if (prev->data == curr->data) {
-            Node *temp = curr;
-            prev->next = curr->next;
-            curr = curr->next;
+    if (head->next == NULL) {
+        cout << "LL has only one node" << endl;
+        return;
+    }
+
+    Node *curr = head;
+
+    while (curr->next != NULL) {
+        if (curr->data == curr->next->data) {
+            Node *temp = curr->next;
+            curr->next = curr->next->next;
+            temp->next = NULL;
             delete temp;
         } else {
-            prev = curr;
             curr = curr->next;
         }
     }
