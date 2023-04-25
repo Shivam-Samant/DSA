@@ -47,15 +47,23 @@ Node* reverseLL(Node *head) {
     return prev;
 }
 
-void addLL(Node *first, Node *second, Node *&answer) {
-    if (first == NULL || second == NULL) {
-        return;
+Node* addLL(Node *first, Node *second) {
+    if (first == NULL && second == NULL) {
+        cout << "Both LL is empty" << endl;
+        return NULL;
+    }
+    if (first == NULL) {
+        return second;
+    }
+    if (second == NULL) {
+        return first;
     }
 
     Node *revFirst = reverseLL(first);
     Node *revSecond = reverseLL(second);
 
-    Node *temp = answer;
+    Node *answer = NULL;
+    Node *ansTail = answer;
     int carry = 0;
 
     while (revFirst != NULL && revSecond != NULL) {
@@ -65,16 +73,14 @@ void addLL(Node *first, Node *second, Node *&answer) {
 
         Node *res = new Node(digit);
 
-        // if answer/temp LL is null
-        if (temp == NULL) {
-            temp = res;
-            answer = temp;
+        if (ansTail == NULL) {
+            ansTail = res;
+            answer = ansTail;
         } else {
-            temp->next = res;
-            temp = res;
+            ansTail->next = res;
+            ansTail = res;
         }
 
-        // increment
         revFirst = revFirst->next;
         revSecond = revSecond->next;
     }
@@ -85,8 +91,8 @@ void addLL(Node *first, Node *second, Node *&answer) {
         int digit = sum % 10;
         carry = sum / 10;
         Node *ans = new Node(digit);
-        temp->next = ans;
-        temp = ans;
+        ansTail->next = ans;
+        ansTail = ans;
         revFirst = revFirst->next;
     }
 
@@ -96,8 +102,8 @@ void addLL(Node *first, Node *second, Node *&answer) {
         int digit = sum % 10;
         carry = sum / 10;
         Node *ans = new Node(digit);
-        temp->next = ans;
-        temp = ans;
+        ansTail->next = ans;
+        ansTail = ans;
         revSecond = revSecond->next;
     }
 
@@ -106,11 +112,12 @@ void addLL(Node *first, Node *second, Node *&answer) {
         int digit = carry % 10;
         carry /= 10;
         Node *ans = new Node(digit);
-        temp->next = ans;
-        temp = ans;
+        ansTail->next = ans;
+        ansTail = ans;
     }
 
     answer = reverseLL(answer);
+    return answer;
 }
 
 int main() {
@@ -131,8 +138,7 @@ int main() {
     print(head1);
     print(head2);
 
-    Node *ans;
-    addLL(head1, head2, ans);
+    Node *ans = addLL(head1, head2);
     print(ans);
     return 0;
 }
