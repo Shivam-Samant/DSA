@@ -51,7 +51,6 @@ void addLL(Node *first, Node *second, Node *&answer) {
     if (first == NULL || second == NULL) {
         return;
     }
-    answer = new Node(-1);
 
     Node *revFirst = reverseLL(first);
     Node *revSecond = reverseLL(second);
@@ -60,22 +59,25 @@ void addLL(Node *first, Node *second, Node *&answer) {
     int carry = 0;
 
     while (revFirst != NULL && revSecond != NULL) {
-        // adding both nodes
-        int result = revFirst->data + revSecond->data;
+        // adding both nodes with carry
+        int sum = revFirst->data + revSecond->data + carry;
 
-        // taking the ans part from the result and adding the carry
-        int ans = (result % 10) + carry;
+        // taking the first digit from the sum
+        int digit = (sum % 10);
 
-        // create a new node of ans
-        Node *res = new Node(ans);
+        // create a new node of digit
+        Node *res = new Node(digit);
 
-        // add the result node into the temp Linked list
-        temp->next = res;
+        // add the sum node into the temp Linked list
+        if (temp != NULL) {
+            temp->next = res;
+            answer = temp;
+        }
         temp = res;
 
         // generate carry
-        if (result >= 10) {
-            carry = result / 10;
+        if (sum >= 10) {
+            carry = sum / 10;
         }
 
         // increment
@@ -84,28 +86,22 @@ void addLL(Node *first, Node *second, Node *&answer) {
     }
 
     while (revFirst != NULL) {
-        int result = revFirst->data + carry;
+        int sum = revFirst->data + carry;
         carry = 0;
-        Node *ans = new Node(result);
+        Node *ans = new Node(sum);
         temp->next = ans;
         temp = ans;
         revFirst = revFirst->next;
     }
 
     while (revSecond != NULL) {
-        int result = revSecond->data + carry;
+        int sum = revSecond->data + carry;
         carry = 0;
-        Node *ans = new Node(result);
+        Node *ans = new Node(sum);
         temp->next = ans;
         temp = ans;
         revSecond = revSecond->next;
     }
-
-    // delete dummy node
-    Node *dummy = answer;
-    answer = answer->next;
-    dummy->next = NULL;
-    delete dummy;
 
     answer = reverseLL(answer);
 }
