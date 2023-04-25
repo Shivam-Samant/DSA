@@ -59,25 +59,19 @@ void addLL(Node *first, Node *second, Node *&answer) {
     int carry = 0;
 
     while (revFirst != NULL && revSecond != NULL) {
-        // adding both nodes with carry
         int sum = revFirst->data + revSecond->data + carry;
-
-        // taking the first digit from the sum
         int digit = (sum % 10);
+        carry = sum / 10;
 
-        // create a new node of digit
         Node *res = new Node(digit);
 
-        // add the sum node into the temp Linked list
-        if (temp != NULL) {
-            temp->next = res;
+        // if answer/temp LL is null
+        if (temp == NULL) {
+            temp = res;
             answer = temp;
-        }
-        temp = res;
-
-        // generate carry
-        if (sum >= 10) {
-            carry = sum / 10;
+        } else {
+            temp->next = res;
+            temp = res;
         }
 
         // increment
@@ -85,35 +79,52 @@ void addLL(Node *first, Node *second, Node *&answer) {
         revSecond = revSecond->next;
     }
 
+    // if first LL length is greater than second LL
     while (revFirst != NULL) {
         int sum = revFirst->data + carry;
-        carry = 0;
-        Node *ans = new Node(sum);
+        int digit = sum % 10;
+        carry = sum / 10;
+        Node *ans = new Node(digit);
         temp->next = ans;
         temp = ans;
         revFirst = revFirst->next;
     }
 
+    // if second LL length is greater than first LL
     while (revSecond != NULL) {
         int sum = revSecond->data + carry;
-        carry = 0;
-        Node *ans = new Node(sum);
+        int digit = sum % 10;
+        carry = sum / 10;
+        Node *ans = new Node(digit);
         temp->next = ans;
         temp = ans;
         revSecond = revSecond->next;
+    }
+
+    // if carry is remaining
+    while (carry) {
+        int digit = carry % 10;
+        carry /= 10;
+        Node *ans = new Node(digit);
+        temp->next = ans;
+        temp = ans;
     }
 
     answer = reverseLL(answer);
 }
 
 int main() {
-    Node *head1 = new Node(2);
-    Node *second1 = new Node(9);
+    Node *head1 = new Node(15);
+    Node *second1 = new Node(5);
+    Node *third1 = new Node(10);
+    Node *fourth1 = new Node(7);
     head1->next = second1;
+    second1->next = third1;
+    third1->next = fourth1;
 
-    Node *head2 = new Node(2);
-    Node *second2 = new Node(9);
-    Node *third2 = new Node(5);
+    Node *head2 = new Node(9);
+    Node *second2 = new Node(20);
+    Node *third2 = new Node(60);
     head2->next = second2;
     second2->next = third2;
 
