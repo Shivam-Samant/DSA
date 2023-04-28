@@ -16,6 +16,29 @@ void printStack(stack<int> st) {
     cout << endl;
 }
 
+int findMiddleValue(stack<int> st) {
+    int ans = -1;
+    int size = st.size();
+    while (!st.empty()) {
+        if (st.size() == size/2) break;
+        int val = st.top();
+        ans = val;
+        st.pop();
+    }
+    return ans;
+}
+
+int findMiddleValueUsingRecursion(stack<int> st, int n) {
+    if (st.size() == (n/2)+1) {
+        return st.top();
+    }
+    int temp = st.top();
+    st.pop();
+    int ans = findMiddleValueUsingRecursion(st, n);
+    st.push(temp);
+    return ans;
+}
+
 int main() {
     stack<int> st;
     st.push(10);
@@ -27,16 +50,14 @@ int main() {
 
     printStack(st);
 
-    int size = st.size();
-    int ans = -1;
-    while (!st.empty()) {
-        if (st.size() == size/2) break;
-        int val = st.top();
-        ans = val;
-        st.pop();
-    }
+    // int ans = findMiddleValue(st);
 
+    int size = st.size();
+    int ans = findMiddleValueUsingRecursion(st, size);
+    
     cout << "Middle value of the stack is " << ans << endl;
+    
+    printStack(st);
 
     return 0;
 }
