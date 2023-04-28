@@ -24,7 +24,7 @@ class Stack {
 
     void push1(int val) {
         if (topIdx1+1 == topIdx2) {
-            cout << "Stack overflow" << endl;
+            cout << "Stack overflow in stack 1" << endl;
         } else {
             arr[++topIdx1] = val;
         }
@@ -32,7 +32,7 @@ class Stack {
 
     void push2(int val) {
         if (topIdx2-1 == topIdx1) {
-            cout << "Stack overflow" << endl;
+            cout << "Stack overflow in stack 2" << endl;
         } else {
             arr[--topIdx2] = val;
         }
@@ -40,23 +40,25 @@ class Stack {
 
     void pop1() {
         if (topIdx1 < 0) {
-            cout << "Stack underflow" << endl;
+            cout << "Stack underflow in stack 1" << endl;
         } else {
+            arr[topIdx1] = 0;
             topIdx1--;
         }
     }
 
     void pop2() {
         if (topIdx2 >= size) {
-            cout << "Stack underflow" << endl;
+            cout << "Stack underflow in stack 2" << endl;
         } else {
+            arr[topIdx2] = 0;
             topIdx2++;
         }
     }
 
     int getTop1() {
         if (topIdx1 < 0) {
-            cout << "Stack underflow" << endl;
+            cout << "Stack underflow in stack 1" << endl;
             return -1;
         }
         return arr[topIdx1];
@@ -64,7 +66,7 @@ class Stack {
 
     int getTop2() {
         if (topIdx2 == size) {
-            cout << "Stack underflow" << endl;
+            cout << "Stack underflow in stack 2" << endl;
             return -1;
         }
         return arr[topIdx2];
